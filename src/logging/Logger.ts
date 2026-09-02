@@ -60,7 +60,7 @@ function formatMessage(message: string | Error): string {
 /**
  * 日志保留天数，超期的日志文件在进程首次写日志时清理
  */
-const LOG_RETENTION_DAYS = 90
+const LOG_RETENTION_DAYS = 15
 
 /**
  * 日志文件目录（首次写入时解析，避免每条日志都做磁盘检查）
@@ -170,7 +170,7 @@ export class Logger {
         const cleanMsg = `[${now}] [${userName}] [${levelTag}] ${platformText(isMobile)} [${title}] ${formatted}`
 
         // 保存日志到本地文件
-        //writeLogToFile(cleanMsg)
+        writeLogToFile(cleanMsg)
 
         if (level === 'error' && config.errorDiagnostics) {
             const page = this.bot.isMobile ? this.bot.mainMobilePage : this.bot.mainDesktopPage
