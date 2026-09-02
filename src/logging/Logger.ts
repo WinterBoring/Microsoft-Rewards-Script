@@ -76,7 +76,7 @@ function cleanOldLogFiles(logDir: string): void {
         return
     }
     for (const name of entries) {
-        const match = /^(\d{4})-(\d{2})-(\d{2})\.log$/.exec(name)
+        const match = /^run_(\d{4})-(\d{2})-(\d{2})_\d{2}-\d{2}-\d{2}\.log$/.exec(name)
         if (!match) continue
         const fileDate = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3])).getTime()
         if (Number.isNaN(fileDate) || fileDate >= cutoff) continue
@@ -88,6 +88,8 @@ function cleanOldLogFiles(logDir: string): void {
     }
 }
 
+let currentRunFileName: string | null = null // 新增全局变量缓存本次文件名
+
 function getLogFilePath(now: Date): string | null {
     try {
         if (!logFileDir) {
@@ -95,8 +97,12 @@ function getLogFilePath(now: Date): string | null {
             fs.mkdirSync(logFileDir, { recursive: true })
             cleanOldLogFiles(logFileDir)
         }
-        const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
-        return path.join(logFileDir, `${date}.log`)
+        // 如果当前运行尚未生成文件名，则初始化一次，确保整场运行写在同一个文件里
+        if (!currentRunFileName) {
+            const pad = (n: number) => String(n).padStart(2, '0')
+            currentRunFileName = `run_${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}.log`
+        }
+        return path.join(logFileDir, currentRunFileName)
     } catch (error) {
         console.error('[Logger] 创建日志目录失败:', error)
         logFileDir = null
