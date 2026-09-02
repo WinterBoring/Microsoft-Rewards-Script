@@ -240,6 +240,7 @@ export class MicrosoftRewardsBot {
 
     async initialize(): Promise<void> {
         this.accounts = loadAccounts()
+        this.accounts.sort(() => Math.random() - 0.5)
         this.warnExperimental()
     }
 
