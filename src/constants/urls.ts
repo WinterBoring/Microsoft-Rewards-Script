@@ -65,7 +65,7 @@ export const URLs = {
         wikipediaTop: (langCode: string, year: number, month: string, day: string) =>
             `${WIKIMEDIA}/api/rest_v1/metrics/pageviews/top/${langCode}.wikipedia/all-access/${year}/${month}/${day}`,
         wikipediaRandom: (langCode: string) =>
-            `https://${langCode}.wikipedia.org/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit=20`,
+            `https://wk.smile.kdns.fr/w/api.php?action=query&format=json&list=random&rnnamespace=0&rnlimit=20`,
         hackerNews: `${HACKER_NEWS}/api/v1/search?tags=front_page&hitsPerPage=50`,
         reddit: (subreddit: string) => `${REDDIT}/r/${subreddit}.json?limit=50`
     },
