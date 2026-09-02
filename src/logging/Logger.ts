@@ -170,7 +170,7 @@ export class Logger {
         const cleanMsg = `[${now}] [${userName}] [${levelTag}] ${platformText(isMobile)} [${title}] ${formatted}`
 
         // 保存日志到本地文件
-        writeLogToFile(cleanMsg)
+        //writeLogToFile(cleanMsg)
 
         if (level === 'error' && config.errorDiagnostics) {
             const page = this.bot.isMobile ? this.bot.mainMobilePage : this.bot.mainDesktopPage
