@@ -60,7 +60,7 @@ function formatMessage(message: string | Error): string {
 /**
  * 日志保留天数，超期的日志文件在进程首次写日志时清理
  */
-const LOG_RETENTION_DAYS = 15
+const LOG_RETENTION_DAYS = 90
 
 /**
  * 日志文件目录（首次写入时解析，避免每条日志都做磁盘检查）
