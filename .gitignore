@@ -22,3 +22,7 @@ note
 /.zcode/
 *.bat
 sendNotify.js
+
+/scripts/tests
+/docs
+
