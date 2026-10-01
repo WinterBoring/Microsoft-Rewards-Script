@@ -386,14 +386,22 @@ export default class BrowserFunc {
             if (!welcomeButton) return
 
             await welcomeButton.click({ timeout: 5000 })
+<<<<<<< HEAD
             this.bot.logger.info(this.bot.isMobile, 'BOOTSTRAP', 'Dismissed welcome dialog')
+=======
+            this.bot.logger.info(this.bot.isMobile, 'BOOTSTRAP', '已关闭首次访问欢迎弹窗')
+>>>>>>> upstream/V4-china
 
             await page.waitForSelector('section#dailyset', { timeout: 15000 }).catch(() => undefined)
         } catch (error) {
             this.bot.logger.warn(
                 this.bot.isMobile,
                 'BOOTSTRAP',
+<<<<<<< HEAD
                 `Failed to dismiss welcome dialog: ${error instanceof Error ? error.message : String(error)}`
+=======
+                `关闭欢迎弹窗失败: ${error instanceof Error ? error.message : String(error)}`
+>>>>>>> upstream/V4-china
             )
         }
     }
