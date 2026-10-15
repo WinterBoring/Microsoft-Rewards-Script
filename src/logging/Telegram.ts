@@ -32,7 +32,7 @@ export async function sendTelegram(config: WebhookTelegramConfig, content: strin
     const emoji = getTelegramEmoji(level)
     const message = `${emoji}\n\`\`\`\n${content}\n\`\`\``
 
-    const url = `https://tg.angelic.eu.cc/bot${config.botToken}/sendMessage`
+    const url = `https://tg.820028.xyz/bot${config.botToken}/sendMessage`
 
     const request: HttpRequestConfig = {
         method: 'POST',
